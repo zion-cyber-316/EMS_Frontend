@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../Context/AuthContext'
+
 import { Link } from 'react-router-dom'
 
 const WorkerAttendanceReport = () => {
@@ -9,7 +9,7 @@ const WorkerAttendanceReport = () => {
   const[skip,setSkip] = useState(0)
   const[dateFilter,setDateFilter] = useState()
 
-  const {serverLink} = useAuth()
+
 
 
   const fectchReport = async()=>{
@@ -19,7 +19,7 @@ const WorkerAttendanceReport = () => {
         query.append("date",dateFilter)
       }
      
-      const res = await axios.get(`${serverLink}/api/workerAttendance/attendanceReport?${query.toString()}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workerAttendance/attendanceReport?${query.toString()}`);
     
 if(res.data.success){
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const AddworkerSalary = () => {
 const [salary,setSalary] = useState({})
 const [worker,setWorker]= useState([])
-const {user,serverLink} = useAuth()
+const {user} = useAuth()
 
 const Navigate = useNavigate()
 
@@ -24,7 +24,7 @@ const Navigate = useNavigate()
 
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/get/${user._id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/get/${user._id}`);
     setWorker(res.data.findworkers)
   }catch(error){
     console.log(error)
@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
  
   try {
     const response = await axios.post(
-      `${serverLink}/api/workersalary/add`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/workersalary/add`,
       salary,
      
     );
@@ -59,6 +59,7 @@ const handleSubmit = async (e) => {
       Navigate("/employee-dashbord/workers");
     }
   } catch (error) {
+    console.log(error)
     
   }
 };

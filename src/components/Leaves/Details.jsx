@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
 
 
 
@@ -10,14 +9,14 @@ const Details = () => {
     const {id} = useParams();
     const [leave,setLeave] = useState(null)
 const navigate =useNavigate()
-const {serverLink} = useAuth()
+
 
 
 
     useEffect(()=>{
   const fetchleave = async()=>{
     try{
-      const response = await axios.get(`${serverLink}/api/leave/detail/${id}`)
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/leave/detail/${id}`)
       console.log(response.data.leave)
       if(response.data.success){
         setLeave(response.data.leave)
@@ -39,7 +38,7 @@ const ChangeStatus = async(id ,status)=>{
 
 
      try{
-      const response = await axios.put(`${serverLink}/api/leave/${id}`,{status})
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/leave/${id}`,{status})
     
       if(response.data.success){
   navigate('/admin-dashbord/leave')
@@ -61,7 +60,7 @@ const ChangeStatus = async(id ,status)=>{
     </h2>
     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div>
-            <img src={`${serverLink}/${leave.employeeId.userId.profileImage}`}
+            <img src={`${import.meta.env.VITE_BACKEND_URL}/${leave.employeeId.userId.profileImage}`}
             className='rounded-full border w-72' />
         </div>
 <div>

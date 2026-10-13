@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { fetchDepartments } from '../../utils/EmployeeHelper'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const Add = () => {
 
@@ -10,14 +10,14 @@ const Add = () => {
   const[Projects,setProjects]=useState([]);
   const [formData ,setformData] = useState({})
   const Navigate = useNavigate()
-  const {serverLink} = useAuth()
+
 // fectch project
 
 useEffect(()=>{
 
 const fetchdata =async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/project/get`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/project/get`)
   console.log(res)
 if(res.data.success){
   setProjects(res.data.Projects)
@@ -75,7 +75,7 @@ const handleSubmit = async (e) => {
 
   try {
     const response = await axios.post(
-      `${serverLink}/api/employee/add`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/employee/add`,
       formDataobj,
       {
         headers: {

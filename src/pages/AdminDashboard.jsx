@@ -1,12 +1,12 @@
 import React from 'react'
-import { useAuth } from '../Context/AuthContext'
+
 import { AdminSidebar } from '../components/Dashbord/AdminSidebar';
 import Navbar from '../components/Dashbord/Navbar';
 import AdminSummary from '../components/Dashbord/AdminSummary';
 import {Outlet} from 'react-router-dom'
 
 const AdminDashboard = () => {
-  const{user} =useAuth();
+ 
 
 
 

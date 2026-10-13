@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 const PurchaseDetailEmp = () => {
   const { id } = useParams();
   const [purchase, setPurchase] = useState(null);
-  const {serverLink} = useAuth()
+ 
 
   useEffect(() => {
     const fetchPurchase = async () => {
       try {
         const response = await axios.get(
-          `${serverLink}/api/purchase/detail/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/purchase/detail/${id}`
         );
         if (response.data.success) {
           setPurchase(response.data.purchase);
@@ -35,7 +35,7 @@ const PurchaseDetailEmp = () => {
             <div>
               {purchase.bill && (
                 <img
-                  src={`${serverLink}/${purchase.bill}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${purchase.bill}`}
                   className="border w-72"
                   alt="Bill"
                 />

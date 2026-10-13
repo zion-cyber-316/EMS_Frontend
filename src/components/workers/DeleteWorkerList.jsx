@@ -4,20 +4,20 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { columns, DelWorkersButtons } from '../../utils/delworkerHelper'
 import DataTable from 'react-data-table-component'
-import { useAuth } from '../../Context/AuthContext'
+
 
 
 const DeleteWorkerList = () => {
 const [delworkers,setDelworkers]=useState([])
  const [filterworkers,setFilterworkers] = useState([])
- const {serverLink} = useAuth()
+
 
 
 useEffect(()=>{
  const fetchworkers = async()=>{
  try{
   
-const res = await axios.get(`${serverLink}/api/deleteworkers/get`);
+const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/deleteworkers/get`);
 if(res.data.success){
     let sno =1
     const data =await res.data.workers.map((worker)=>(

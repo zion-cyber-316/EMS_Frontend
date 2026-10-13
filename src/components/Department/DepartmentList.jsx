@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {  useNavigate } from 'react-router-dom'
+
 import DataTable from 'react-data-table-component'
 import { columns, DepartmentButtons } from '../../utils/DepartmentHelper'
 import { useEffect } from 'react'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 
 
 
@@ -13,25 +13,18 @@ import { useAuth } from '../../Context/AuthContext'
 const DepartmentList = () => {
 const [departments,setdepartments] = useState([])
 const [filterDepartment,setfilterDeparment] = useState([])
-const {serverLink} = useAuth()
 
 
 
 
-// const onDepartmentDelete = (id)=>{
-//   const data = departments.filter(dep => dep._id != id)
-//   setdepartments(data)
-//   setfilterDeparment(data)
-// }
 
 
-/// fech data 
 
 useEffect(()=>{
 
 const fetchdata =async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/department`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department`)
   console.log(res)
   if(res.data.success){
     let sno =1

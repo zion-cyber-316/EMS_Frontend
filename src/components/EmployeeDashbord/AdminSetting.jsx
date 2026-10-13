@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const AdminSetting = () => {
 
-  const {user,logout,serverLink} = useAuth()
+  const {user,logout} = useAuth()
   const [setting,setSetting]=useState({
     userId : user._id,
     oldPassword : " ",
@@ -26,7 +26,7 @@ const AdminSetting = () => {
     setError("Password not matched")
   }else{
     try{
-      const response = await axios.put(`${serverLink}/api/setting/changeAdmin-password`,setting)
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/setting/changeAdmin-password`,setting)
 
       if(response.data.success){
         logout()

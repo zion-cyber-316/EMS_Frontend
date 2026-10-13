@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {  useNavigate } from 'react-router-dom'
+
 import DataTable from 'react-data-table-component'
 
 import { useEffect } from 'react'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 import { columns, ProjectButtons } from '../../utils/ProjectHelper'
 
 
@@ -14,7 +14,7 @@ import { columns, ProjectButtons } from '../../utils/ProjectHelper'
 const ProjectList = () => {
 const [Projects,setProjects] = useState([])
 const [filterProjects,setfilterProjects] = useState([])
-const {serverLink} = useAuth()
+
 
 
 
@@ -27,7 +27,7 @@ useEffect(()=>{
 
 const fetchdata =async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/project/get`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/project/get`)
   console.log(res)
   if(res.data.success){
     let sno =1

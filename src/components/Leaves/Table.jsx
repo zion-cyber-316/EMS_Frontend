@@ -4,16 +4,16 @@ import { LeaveButtons } from '../../utils/LeaveHelper'
 import DataTable from 'react-data-table-component'
 import { columns } from '../../utils/LeaveHelper'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const Table = () => {
 const [leaves,setLeaves]=useState([])
 const [filteredLeaves,setFilteredLeaves] = useState([])
-const {serverLink} = useAuth()
+
 
     const fetchleaves = async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/leave`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/leave`)
   
   console.log(res.data)
   if(res.data.success){

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import axios from "axios"
 
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,7 @@ const [items, setItems] = useState([
     { itemname: "", numberofitem: "", itemrate: "" ,gst:""}
   ]);
 
-  const {user,serverLink}= useAuth()
+  const {user}= useAuth()
 
 
   const [formData ,setformData] = useState({
@@ -66,10 +66,7 @@ const handleSubmit = async (e) => {
   const formDataobj = new FormData();
 
 
-  // Object.keys(formData).forEach((key) => {
-  //   formDataobj.append(key, formData[key]);
-  //   formDataobj.append("items", JSON.stringify(items));
-  // });
+
 
 formDataobj.append("userId", formData.userId);
 formDataobj.append("projectname", formData.projectname);
@@ -90,7 +87,7 @@ if (formData.bill) {
 
   try {
     const response = await axios.post(
-      `${serverLink}/api/purchase/add`, 
+      `${import.meta.env.VITE_BACKEND_URL}/api/purchase/add`, 
         formDataobj,
         
       

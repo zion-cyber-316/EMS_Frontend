@@ -2,11 +2,11 @@ import React, { useState,useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 const AdminList = () => {
 
 const {id} = useParams() 
-const {serverLink} = useAuth()
+
 
 const [leaves,setLeaves] = useState([])
 let sno =1
@@ -16,7 +16,7 @@ let sno =1
         console.log(id)
 
 try{
-const response = await axios.get(`${serverLink}/api/leave/admin/${id}`)
+const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/leave/admin/${id}`)
 console.log(response.data)
 if(response.data.success){
   setLeaves(response.data.leaves)

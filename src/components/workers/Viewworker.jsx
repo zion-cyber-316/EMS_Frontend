@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 
 
@@ -9,7 +9,7 @@ import { useAuth } from '../../Context/AuthContext';
 const Viewworker = () => {
     const {id} = useParams();
     const [worker,setWorker] = useState(null)
-    const {serverLink} = useAuth()
+
 
 
 
@@ -17,7 +17,7 @@ const Viewworker = () => {
   useEffect(()=>{
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/getOne/${id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/getOne/${id}`);
 
       if(res.data.success){
         

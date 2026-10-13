@@ -9,7 +9,7 @@ import { useAuth } from '../../Context/AuthContext'
 
 const AdminPurchase = () => {
 
-  const{user,serverLink}= useAuth()
+  const{user}= useAuth()
   const[Purchase,setPurchase] = useState([])
 
 
@@ -17,7 +17,7 @@ const AdminPurchase = () => {
     console.log(user._id)
     
 try{
-  const res = await axios.get(`${serverLink}/api/purchase`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/purchase`)
   
   // console.log(res.data)
   if(res.data.success){

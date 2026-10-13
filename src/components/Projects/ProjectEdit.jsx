@@ -1,17 +1,17 @@
 import React, { useState,useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 const ProjectEdit = () => {
     const {id} = useParams();
     const [Project,setProject] = useState([])
     const Navigate = useNavigate()
-const {serverLink} = useAuth()
+
     useEffect(()=>{
 const fetchData = async()=>{
   try{
-    const response = await axios.get(`${serverLink}/api/project/get/${id}`)
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/project/get/${id}`)
     console.log(response)
   
   if(response.data.success){
@@ -40,7 +40,7 @@ e.preventDefault();
 
 
 try{
-const response = await axios.put(`${serverLink}/api/project/edit/${id}`,Project)
+const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/project/edit/${id}`,Project)
 
 
 

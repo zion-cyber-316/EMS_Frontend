@@ -2,17 +2,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext';
+
 
 const Viewworkersalary = () => {
   const [salaries, setSalaries] = useState([]);
   const { id } = useParams();
-  const {serverLink} = useAuth()
+ 
   let sno = 1;
 
   const fetchSalaries = async () => {
     try {
-      const response = await axios.get(`${serverLink}/api/workersalary/find/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workersalary/find/${id}`);
       console.log(response.data)
       if (response.data.success) {
         setSalaries(response.data.salary || []);

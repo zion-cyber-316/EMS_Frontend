@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
 import { columns, OverTime,WorkerAttButtons} from '../../utils/WorkerAttHelper'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const WorkerAttendance = () => {
   const [attendance,setAttendance] = useState([])
   const [filterAttendance,setFilterAttendance] = useState([])
     const[dateFilter,setDateFilter] = useState( new Date().toISOString().split("T")[0])
     const[skip,setSkip] = useState(0)
-  const {serverLink} = useAuth()
+
 
   const statusChange = ()=>{
     fetchAttendance()
@@ -28,7 +28,7 @@ const fetchAttendance = async()=>{
 
   
 
-    const res = await axios.get(`${serverLink}/api/workerAttendance/get?${query.toString()}`);
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workerAttendance/get?${query.toString()}`);
 
     
 console.log(res.data)

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const AddLeave = () => {
-    const {user,serverLink} = useAuth()
+    const {user} = useAuth()
     const [leave,setLeave]= useState({
      userId :user._id
     })
@@ -23,7 +23,7 @@ setLeave((prevState)=>({...prevState ,[name]:value}))
     e.preventDefault()
     console.log(leave)
     try{
-        const res = await axios.post(`${serverLink}/api/leave/add`,leave)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/leave/add`,leave)
         if(res.data.success){
            navigate("/employee-dashbord/leaves")
         }

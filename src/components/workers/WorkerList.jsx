@@ -14,14 +14,14 @@ const WorkerList = () => {
   const [workers,setWorkers] = useState([])
    const [filterworkers,setFilterworkers] = useState([])
 
-  const {user,serverLink} = useAuth()
+  const {user} = useAuth()
   const Id = user._id
 useEffect(()=>{
   
 
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/get/${Id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/get/${Id}`);
     
 if(res.data.success){
     let sno =1

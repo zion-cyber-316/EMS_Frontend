@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 
 
@@ -9,7 +9,7 @@ import { useAuth } from '../../Context/AuthContext';
 const DelworkerDetails = () => {
     const {id} = useParams();
     const [worker,setWorker] = useState(null)
-    const {serverLink} = useAuth()
+    
 
 
 
@@ -17,7 +17,7 @@ const DelworkerDetails = () => {
     useEffect(()=>{
   const fetchempData = async()=>{
     try{
-      const response = await axios.get(`${serverLink}/api/deleteworkers/details/${id}`)
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/deleteworkers/details/${id}`)
       
       if(response.data.success){
         console.log(response.data.finddelworker)

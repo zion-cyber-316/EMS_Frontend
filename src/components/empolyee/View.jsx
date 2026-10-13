@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 
 
@@ -9,7 +9,7 @@ import { useAuth } from '../../Context/AuthContext';
 const View = () => {
     const {id} = useParams();
     const [employee,setEmployee] = useState(null)
-    const {serverLink} = useAuth()
+    
 
 
 
@@ -17,7 +17,7 @@ const View = () => {
     useEffect(()=>{
   const fetchempData = async()=>{
     try{
-      const response = await axios.get(`${serverLink}/api/employee/${id}`)
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/employee/${id}`)
       
       if(response.data.success){
         setEmployee(response.data.Oneemployee)
@@ -43,7 +43,7 @@ const View = () => {
     </h2>
     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div>
-            <img src={`${serverLink}/${employee.userId.profileImage}`}
+            <img src={`${import.meta.env.VITE_BACKEND_URL}/${employee.userId.profileImage}`}
             className='rounded-full border w-72' />
         </div>
 <div>

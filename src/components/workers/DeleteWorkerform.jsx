@@ -5,7 +5,7 @@ import { useAuth } from '../../Context/AuthContext'
 
 const DeleteWorkerform = () => {
 
-    const {user,serverLink}= useAuth()
+    const {user}= useAuth()
     const userId = user._id;
 const id = useParams()
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ const id = useParams()
     
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/getOne/${id.id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/getOne/${id.id}`);
 
       if(res.data.success){
         
@@ -50,7 +50,7 @@ console.log(res.data.findOneWorker)
     
 
         try{
-         const res = await axios.post(`${serverLink}/api/workers/delete/${id.id}`,{...worker,userId})
+         const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/workers/delete/${id.id}`,{...worker,userId})
       
         if(res.data.success){
           console.log(res.data.delworker)

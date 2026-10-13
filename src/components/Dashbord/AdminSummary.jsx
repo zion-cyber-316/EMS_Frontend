@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react'
 import SummaryCard from './SummaryCard'
 import { FaBuilding, FaCheckCircle, FaFileAlt, FaHourglassHalf, FaMoneyBill, FaMoneyBillWave, FaTimesCircle, FaUser, FaUsers } from 'react-icons/fa'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 const AdminSummary = () => {
 
 const [summary,setSummary] = useState(null)
-const {serverLink} = useAuth()
+
 
 useEffect(()=>{
 
  const fetchSummary = async()=>{
   try{
-    const summary = await axios.get(`${serverLink}/api/dashbord/summary`)
+    const summary = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/dashbord/summary`)
    console.log(summary.data)
 setSummary(summary.data)
   }catch(error){

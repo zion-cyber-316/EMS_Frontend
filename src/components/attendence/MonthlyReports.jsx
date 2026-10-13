@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-import { useAuth } from "../../Context/AuthContext";
+
 
 const MonthlyReports = () => {
-  const { serverLink } = useAuth();
+  
   const [month, setMonth] = useState(
     new Date().toISOString().slice(0, 7) // default current month
   );
@@ -14,7 +14,7 @@ const MonthlyReports = () => {
   const fetchMonthlyReport = async () => {
     try {
       const res = await axios.get(
-        `${serverLink}/api/workerAttendance/monthly-summary?month=${month}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/workerAttendance/monthly-summary?month=${month}`
       );
       console.log(res)
 

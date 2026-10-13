@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../../Context/AuthContext'
 import axios from 'axios'
 const LeaveList = () => {
-const {user,serverLink} = useAuth()
+const {user} = useAuth()
 const [leaves,setLeaves] = useState([])
 let sno =1
 
@@ -11,7 +11,7 @@ let sno =1
     const fetchleaves = async()=>{
 
 try{
-const response = await axios.get(`${serverLink}/api/leave/${user._id}`)
+const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/leave/${user._id}`)
 console.log(response.data)
 if(response.data.success){
   setLeaves(response.data.leaves)

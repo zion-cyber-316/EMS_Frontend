@@ -44,7 +44,7 @@ export const columns =[
 
 export const fetchDepartments = async () => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/department`);
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department`);
     if (res.data.success) {
       return res.data.Departments;
     } else {

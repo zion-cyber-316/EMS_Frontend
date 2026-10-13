@@ -55,7 +55,7 @@ export  const WorkerAttButtons = ({status,id,statusChange,dateFilter})=>{
 
   if (!confirmAction) return
 
-const res = await axios.put(`http://localhost:5000/api/workerAttendance/update/${id}`,{status,date:dateFilter})
+const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/workerAttendance/update/${id}`,{status,date:dateFilter})
 
 if(res.data.success){
   statusChange()
@@ -131,7 +131,7 @@ export const OverTime = ({id,OT,statusChange,dateFilter}) => {
   if (!confirmAction) return
 
     try{
-      const res = await  axios.put(`http://localhost:5000/api/workerAttendance/updateOT/${id}`,{overtime,date:dateFilter})
+      const res = await  axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/workerAttendance/updateOT/${id}`,{overtime,date:dateFilter})
 if(res.data.success){
   statusChange()
   console.log(OT)

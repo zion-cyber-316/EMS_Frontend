@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const Addepartment = () => {
   const [department,setdepartment]=useState({
@@ -9,7 +9,7 @@ const Addepartment = () => {
     description :" "
   })
 const Navigate = useNavigate()
-const {serverLink} = useAuth()
+
 
 
   const handleChange = (e)=>{
@@ -27,7 +27,7 @@ e.preventDefault();
 
 
 try{
-const response = await axios.post(`${serverLink}/api/department/add`,department,
+const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/department/add`,department,
   {headers :{
     "Authorization" : `Bearer ${localStorage.getItem("token")}`
    }}

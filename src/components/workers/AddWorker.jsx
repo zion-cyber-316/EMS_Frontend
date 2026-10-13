@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../Context/AuthContext'
 
 const AddWorker = () => {
-    const {user,serverLink} = useAuth();
+    const {user} = useAuth();
   const userId = user._id
   const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ useEffect(()=>{
 
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/get/${user._id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/get/${user._id}`);
     setLength(res.data.findworkers.length)
   }catch(error){
     console.log(error)
@@ -37,7 +37,7 @@ useEffect(()=>{
     
 
         try{
-          const res = await axios.post(`${serverLink}/api/workers/add`,{...worker,userId})
+          const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/workers/add`,{...worker,userId})
         console.log(res)
         if(res.data.success){
           navigate("/employee-dashbord/workers")

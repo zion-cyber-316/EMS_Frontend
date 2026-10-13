@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { fetchDepartments, getEmployees } from '../../utils/EmployeeHelper'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+
 
 const Addsalary = () => {
   
@@ -18,7 +18,7 @@ const[salary,setSalary] =useState({
   const [employees,setEmployees] = useState([ ])
   const Navigate = useNavigate()
 
-  const {serverLink} = useAuth()
+
 
 
 
@@ -69,7 +69,7 @@ const handleSubmit = async (e) => {
  
   try {
     const response = await axios.post(
-      `${serverLink}/api/salary/add`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/salary/add`,
       salary,
      
     );

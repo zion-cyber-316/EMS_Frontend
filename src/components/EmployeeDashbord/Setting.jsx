@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 import { useAuth} from '../../Context/AuthContext'
 import axios from 'axios'
 
 const Setting = () => {
-  const navigate = useNavigate()
-  const {user,logout,serverLink} = useAuth()
+ 
+  const {user,logout} = useAuth()
   const [setting,setSetting]=useState({
     userId : user._id,
     oldPassword : " ",
@@ -25,7 +25,7 @@ const Setting = () => {
     setError("Password not matched")
   }else{
     try{
-      const response = await axios.put(`${serverLink}/api/setting/change-password`,setting)
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/setting/change-password`,setting)
 
       if(response.data.success){
         logout()

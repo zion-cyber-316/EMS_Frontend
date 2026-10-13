@@ -13,8 +13,9 @@ function AuthContext({ children }) {
   const navigate = useNavigate();
 
 
-  // const serverLink = "http://localhost:5000"
-    const serverLink = "https://ems-backend-zbz9.onrender.com"
+  const serverLink = "http://localhost:5000"
+   
+  
 
   useEffect(() => {
     // Skip verification if user was just manually logged in
@@ -32,7 +33,7 @@ function AuthContext({ children }) {
           return;
         }
 
-        const response = await axios.get(`${serverLink}/auth/verify`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/verify`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }

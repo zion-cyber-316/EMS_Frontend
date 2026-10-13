@@ -80,7 +80,7 @@ function App() {
 <RefreshHandler setIsAuthenticated={setIsAuthenticated}/>
 
 <Routes>
-<Route path="/" element={<Navigate to= "login "/>}></Route>
+<Route path="/" element={<Navigate to= "login" replace/>}></Route>
 <Route path="/login" element={<Login/>}></Route>
 
 
@@ -89,7 +89,7 @@ function App() {
   <Route path ='/admin-dashbord' element={
 
     <PrivateRoutes>
-      <RoleBaseRoute requiredRole={["Admin","Employee"]}>
+      <RoleBaseRoute requiredRole={["Admin"]}>
         <AdminDashboard/>
 
       </RoleBaseRoute>
@@ -130,7 +130,7 @@ function App() {
 
 <Route path="/employee-dashbord" element={
    <PrivateRoutes>
-      <RoleBaseRoute requiredRole={["admin","Employee"]}>
+      <RoleBaseRoute requiredRole={["Employee"]}>
         <EmployeeDashbord/>
 
       </RoleBaseRoute>
@@ -173,23 +173,3 @@ export default App
 
 
 
-
-{/* <PrivateRoute element={<AdminDashboard/>}/> */}
-
-
-
-{/* <Route path="/admin-dashbord" element={
-
-  <PrivateRoutes>
-<RoleBaseRoute requiredRole={["admin"]}>
-  <AdminDashboard/>
-</RoleBaseRoute>
-  </PrivateRoutes>
-  }>
-
-    <Route index element={<AdminSummary/>}></Route>
-
-  <Route path="/admin-dashbord/departments" element={<DepartmentList/>}></Route>
-    <Route path="/admin-dashbord/add-department" element={<Addepartment/>}></Route>
-
-  </Route> */}

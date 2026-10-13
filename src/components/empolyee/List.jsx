@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { columns, EmployeesButtons,} from '../../utils/EmployeeHelper'
 import DataTable from 'react-data-table-component'
-import { useAuth } from '../../Context/AuthContext'
+
 
 
 
@@ -12,12 +12,12 @@ import { useAuth } from '../../Context/AuthContext'
 const List = () => {
  const [employee,setemployee] = useState([])
  const [filteremployee,setFilteremployee] = useState([])
- const {serverLink} = useAuth()
+
 
 useEffect(()=>{
 const fetchempdata =async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/employee`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/employee`)
   
   console.log(res.data)
   if(res.data.success){
@@ -29,7 +29,7 @@ try{
       dep_name:emp.department.dep_name,
       name :emp.userId.name,
       dob: new Date( emp.dob).toLocaleDateString(),
-      profileImage :<img width={40}  className='rounded-full' src={`${serverLink}/${emp.userId.profileImage}`}/>   ,
+      profileImage :<img width={40}  className='rounded-full' src={`${import.meta.env.VITE_BACKEND_URL}/${emp.userId.profileImage}`}/>   ,
       action : (<EmployeesButtons Id={emp._id}/>)
       }
     ))

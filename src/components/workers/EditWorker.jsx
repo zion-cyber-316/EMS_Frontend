@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext'
+
 
 
 
@@ -12,7 +12,7 @@ const EditWorker = () => {
   
 const id = useParams()
   const navigate = useNavigate()
-  const {serverLink} = useAuth()
+  
 
   const [worker,setWorker] = useState('')
 
@@ -22,7 +22,7 @@ const id = useParams()
   useEffect(()=>{
   const getWorkers = async()=>{
   try{
-      const res = await axios.get(`${serverLink}/api/workers/getOne/${id.id}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/workers/getOne/${id.id}`);
 
       if(res.data.success){
         
@@ -53,7 +53,7 @@ console.log(res.data.findOneWorker)
     
 
         try{
-         const res = await axios.put(`${serverLink}/api/workers/edit/${id.id}`,worker)
+         const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/workers/edit/${id.id}`,worker)
       
         if(res.data.success){
          

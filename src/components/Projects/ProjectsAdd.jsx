@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const ProjectsAdd = () => {
   const [Project,setProject]=useState({
@@ -9,7 +9,7 @@ const ProjectsAdd = () => {
     description :""
   })
 const Navigate = useNavigate()
-const {serverLink} = useAuth()
+
 
 
   const handleChange = (e)=>{
@@ -24,7 +24,7 @@ setProject({...Project, [name] : value})
 e.preventDefault();
 
 try{
-const response = await axios.post("http://localhost:5000/api/project/add",Project,
+const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/project/add`,Project,
  
 )
 

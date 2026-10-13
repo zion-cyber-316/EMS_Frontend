@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { fetchDepartments } from '../../utils/EmployeeHelper'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext'
+
 
 const Edit = () => {
  const[Projects,setProjects]=useState([]);
@@ -17,7 +17,7 @@ const[employee,setEmployee] =useState({
   const[departments,setdepartments]=useState(null);
   const Navigate = useNavigate()
   const {id} = useParams()
-  const {serverLink} = useAuth()
+  
 
 // fetch projects
 
@@ -25,7 +25,7 @@ useEffect(()=>{
 
 const fetchdata =async()=>{
 try{
-  const res = await axios.get(`${serverLink}/api/project/get`)
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/project/get`)
   console.log(res)
 if(res.data.success){
   setProjects(res.data.Projects)
@@ -66,7 +66,7 @@ useEffect(() => {
 
 const fetchEmployee = async()=>{
   try{
-    const response = await axios.get(`${serverLink}/api/employee/${id}`)
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/employee/${id}`)
     
   console.log(response.data)
   if(response.data.success){
@@ -114,7 +114,7 @@ const handleSubmit = async (e) => {
  
   try {
     const response = await axios.put(
-      `${serverLink}/api/employee/edit/${id}`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/employee/edit/${id}`,
       employee,
      
     );

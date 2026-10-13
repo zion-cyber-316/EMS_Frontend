@@ -1,17 +1,17 @@
 import React, { useState,useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
-import { useAuth } from '../../Context/AuthContext';
+
 
 const EditDepartment = () => {
     const {id} = useParams();
     const [department,setdepartment] = useState([])
     const Navigate = useNavigate()
-const {serverLink} = useAuth()
+
     useEffect(()=>{
 const fetchData = async()=>{
   try{
-    const response = await axios.get(`${serverLink}/api/department/${id}`)
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/${id}`)
     console.log(response)
   
   if(response.data.success){
@@ -38,7 +38,7 @@ e.preventDefault();
 
 
 try{
-const response = await axios.put(`${serverLink}/api/department/${id}`,department,
+const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/department/${id}`,department,
   {headers :{
     "Authorization" : `Bearer ${localStorage.getItem("token")}`
    }}

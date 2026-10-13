@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from "axios"
 import { useAuth } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ const Login = () => {
 const [email,setEmail] = useState('');
 const [password,setPassword] = useState('')
 const [pendingNavigation, setPendingNavigation] = useState(null)
-const {login, user, serverLink} = useAuth()
+const {login, user} = useAuth()
 const Navigate = useNavigate();
 
 // Navigate after user is set in context
@@ -26,7 +26,7 @@ const handleSubmit = async(e)=>{
     e.preventDefault()
  try{
    
-    const response = await axios.post(`${serverLink}/auth/login`,{email,password});
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,{email,password});
     
 if(response.data.success){
    
